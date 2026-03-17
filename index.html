@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EID MUBARAK - Celebration Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cinzel:wght@700&display=swap');
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0a00 0%, #2d1b00 25%, #4a2c00 50%, #2d1b00 75%, #1a0a00 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Cinzel', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ffd700 0%, #ffed4e 50%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* Decorative corners */
+        .corner {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            z-index: 2;
+        }
+
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-top: 4px solid #ffd700;
+            border-left: 4px solid #ffd700;
+            border-top-left-radius: 30px;
+        }
+
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-top: 4px solid #ffd700;
+            border-right: 4px solid #ffd700;
+            border-top-right-radius: 30px;
+        }
+
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 4px solid #ffd700;
+            border-left: 4px solid #ffd700;
+            border-bottom-left-radius: 30px;
+        }
+
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 4px solid #ffd700;
+            border-right: 4px solid #ffd700;
+            border-bottom-right-radius: 30px;
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .eid-title {
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ffd700 0%, #ffed4e 25%, #fff8a0 50%, #ffed4e 75%, #ffd700 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: shine 3s linear infinite;
+            letter-spacing: 10px;
+            margin-bottom: 10px;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #daa520;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+            to { text-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 60px rgba(255, 237, 78, 0.8); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Crescent moon decoration */
+        .moon {
+            position: absolute;
+            top: 80px;
+            right: 100px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: -20px 10px 0 5px #ffd700;
+            animation: rotateMoon 10s linear infinite;
+            z-index: 5;
+        }
+
+        @keyframes rotateMoon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Images grid */
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+            perspective: 1000px;
+        }
+
+        .image-card {
+            position: relative;
+            background: linear-gradient(145deg, #2a1a00, #3d2a00);
+            border: 3px solid #ffd700;
+            border-radius: 15px;
+            padding: 8px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 215, 0, 0.3),
+                inset 0 0 20px rgba(255, 215, 0, 0.1);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: cardAppear 0.8s ease-out backwards;
+        }
+
+        .image-card:hover {
+            transform: translateY(-10px) scale(1.05) rotateX(10deg);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.6),
+                0 0 40px rgba(255, 215, 0, 0.6),
+                inset 0 0 30px rgba(255, 215, 0, 0.2);
+            border-color: #ffed4e;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #1a0a00, #2d1b00);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .image-card:hover .image-wrapper img {
+            transform: scale(1.1);
+            filter: brightness(1.2) contrast(1.2);
+        }
+
+        /* Golden frame overlay */
+        .frame-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), transparent 50%, rgba(255, 215, 0, 0.3)) border-box;
+            pointer-events: none;
+        }
+
+        /* Name label */
+        .name-label {
+            margin-top: 12px;
+            padding: 10px 5px;
+            text-align: center;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            border-radius: 8px;
+        }
+
+        .name-text {
+            font-size: 0.9rem;
+            color: #ffd700;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: capitalize;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Decorative lines */
+        .deco-line {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, #ffed4e, #ffd700, transparent);
+            margin: 30px auto;
+            width: 80%;
+            border-radius: 2px;
+            animation: linePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.5; box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        /* Footer message */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            animation: fadeInUp 1.5s ease-out 1s both;
+        }
+
+        .footer-text {
+            font-size: 1.3rem;
+            color: #daa520;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #fff 0%, #ffd700 50%, transparent 70%);
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .images-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .eid-title {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .images-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .eid-title {
+                font-size: 3rem;
+                letter-spacing: 5px;
+            }
+            .arabic-text {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .images-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .eid-title {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+            .arabic-text {
+                font-size: 1.5rem;
+            }
+            .corner {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Lantern decoration */
+        .lantern {
+            position: absolute;
+            font-size: 3rem;
+            animation: swing 4s ease-in-out infinite;
+            z-index: 5;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+        }
+
+        .lantern-1 { top: 150px; left: 50px; animation-delay: 0s; }
+        .lantern-2 { top: 150px; right: 50px; animation-delay: 1s; }
+        .lantern-3 { bottom: 200px; left: 80px; animation-delay: 2s; }
+        .lantern-4 { bottom: 200px; right: 80px; animation-delay: 3s; }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Decorative corners -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <!-- Crescent moon -->
+    <div class="moon"></div>
+
+    <!-- Lanterns -->
+    <div class="lantern lantern-1">🪔</div>
+    <div class="lantern lantern-2">🪔</div>
+    <div class="lantern lantern-3">🪔</div>
+    <div class="lantern lantern-4">🪔</div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="arabic-text">عيد مبارك</div>
+            <h1 class="eid-title">EID MUBARAK</h1>
+            <div class="deco-line"></div>
+            <p class="subtitle">Wishing You Joy, Peace & Prosperity</p>
+        </div>
+
+        <!-- Decorative line -->
+        <div class="deco-line"></div>
+
+        <!-- Images Grid -->
+        <div class="images-grid" id="imagesGrid">
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">"May this Eid bring happiness, prosperity, and success to your life"</p>
+            <div class="deco-line"></div>
+        </div>
+    </div>
+
+    <script>
+        // Image data with filenames and names
+        const imageData = [
+            { file: 'Abdullah arain.jpg', name: 'Abdullah Arain' },
+            { file: 'Adeel Rajpoot.jpg', name: 'Adeel Rajpoot' },
+            { file: 'Ahmad Rajpoot upr lganii or center ma.png', name: 'Ahmad Rajpoot' },
+            { file: 'Ali hassan.jpg', name: 'Ali Hassan' },
+            { file: 'Ali jutt upr mery sath.jpg', name: 'Ali Jutt' },
+            { file: 'Bilal arain.jpg', name: 'Bilal Arain' },
+            { file: 'Chohdry Ahmad.jpg', name: 'Ch. Ahmad' },
+            { file: 'Hamid khan.jpg', name: 'Hamid Khan' },
+            { file: 'Hamza Rajpoot.jpg', name: 'Hamza Rajpoot' },
+            { file: 'Hamza jutt.jpg', name: 'Hamza Jutt' },
+            { file: 'Hassan king.jpg', name: 'Hassan King' },
+            { file: 'Huraira jutt.jpg', name: 'Huraira Jutt' },
+            { file: 'Khalid Ryder Upr.jpg', name: 'Khalid Ryder' },
+            { file: 'Malik umer.jpg', name: 'Malik Umer' },
+            { file: 'Muhammad Sajid.jpg', name: 'Muhammad Sajid' },
+            { file: 'Rehan Rajpoot.jpg', name: 'Rehan Rajpoot' },
+            { file: 'Rizwan Arain upr.jpg', name: 'Rizwan Arain' },
+            { file: 'Saif Jutt Corner ma.jpg', name: 'Saif Jutt' },
+            { file: 'Umair chohdry upr.jpg', name: 'Umair Chohdry' },
+            { file: 'Umer prince.jpg', name: 'Umer Prince' },
+            { file: 'Usama Nawab upr.jpg', name: 'Usama Nawab' },
+            { file: 'Wadera Sab upr.jpg', name: 'Wadera Sab' },
+            { file: 'Zulqarnain Arain.jpg', name: 'Zulqarnain Arain' },
+            { file: 'Ahmad Ghaffar.jpg', name: 'Ahmad Ghaffar' },
+            { file: 'Ahmad upr corner ma.jpg', name: 'Ahmad' }
+        ];
+
+        // Generate image cards
+        const grid = document.getElementById('imagesGrid');
+        
+        imageData.forEach((data, index) => {
+            const card = document.createElement('div');
+            card.className = 'image-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            card.innerHTML = `
+                <div class="image-wrapper">
+                    <img src="${data.file}" alt="${data.name}" loading="lazy">
+                    <div class="frame-overlay"></div>
+                </div>
+                <div class="name-label">
+                    <div class="name-text">${data.name}</div>
+                </div>
+            `;
+            
+            // Add sparkle on hover
+            card.addEventListener('mouseenter', () => {
+                createSparkles(card);
+            });
+            
+            grid.appendChild(card);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.width = (Math.random() * 10 + 5) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+
+        // Create sparkles on card hover
+        function createSparkles(element) {
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 0.5 + 's';
+                element.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+
+        // Add parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.image-card');
+            const x = (window.innerWidth - e.pageX) / 50;
+            const y = (window.innerHeight - e.pageY) / 50;
+            
+            cards.forEach((card, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                card.style.transform = `translateX(${x * speed}px) translateY(${y * speed}px)`;
+            });
+        });
+
+        // Add click interaction
+        document.querySelectorAll('.image-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.animation = 'none';
+                this.offsetHeight; // Trigger reflow
+                this.style.animation = 'cardAppear 0.5s ease-out';
+                createSparkles(this);
+            });
+        });
+    </script>
+</body>
+</html>
